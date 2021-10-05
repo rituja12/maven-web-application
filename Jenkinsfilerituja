@@ -1,4 +1,4 @@
-node
+node('wllmart-node')
 {
     def mavenhome= tool name: "maven3.8.2"
     properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * * ')])])
@@ -25,7 +25,7 @@ node
     stage('uploadartifact')
     {
         sh "${mavenhome}/bin/mvn clean deploy"
-    } */
+    } 
     stage('deployintomcat')
     {
         sshagent(['496aa813-35ab-4e12-bf26-45dd37a37b6b'])
@@ -36,8 +36,8 @@ node
     stage('sendEmail')
     {
         emailext body: 'build over', subject: 'build over', to: 'ninave.rituj@gmail.com'
-    }
-    }
+    }*/
+    
     
 }
     
